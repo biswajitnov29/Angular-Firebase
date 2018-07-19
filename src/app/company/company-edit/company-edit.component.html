@@ -1,0 +1,11 @@
+<h1>Company Edit</h1>
+<mat-card *ngIf="company$ | async as company">
+  <mat-form-field >
+    <input matInput placeholder="Company Name" value="Sushi" [(ngModel)]="company.name">
+  </mat-form-field>
+  <mat-card-actions align="right">
+      <button mat-button color="primary" *ngIf="isNewCompany" (click)="saveCompany(company)">Save</button>
+      <button mat-button color="primary" *ngIf="!isNewCompany" (click)="updateCompany(company)">Update</button>
+      <button mat-button color="primary" (click)="removeCompany()">Remove</button>
+  </mat-card-actions>
+</mat-card>
