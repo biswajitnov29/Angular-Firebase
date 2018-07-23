@@ -1,0 +1,18 @@
+<div fxLayoutAlign="space-between center">
+    <h1>Contacts</h1>
+    <mat-select placeholder="Select Company" (selectionChange)="getSpecificContact($event.value)" style="width: 200px;">
+      <mat-option [value]="null">All</mat-option>  
+      <mat-option *ngFor="let company of companiesList" [value]="company.key">
+          {{company.name}}
+        </mat-option>
+      </mat-select>
+</div>
+<mat-card *ngFor="let contact of contactsList" fxLayoutAlign="space-between center">
+
+  <span>{{contact.name}}</span>
+
+  <button mat-button [routerLink]="['/contact-edit',contact.key]">Edit</button>
+</mat-card>
+<button mat-fab [routerLink]="['/contact-edit/new']">
+  <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+</button>

@@ -1,14 +1,20 @@
 <mat-toolbar color="primary">
-  <div fxLayoutAlign="space-between center" class="nav-buttons">
-      <span>AngularFire</span>
-      <button mat-button [routerLink]="['/company-list']">Companies</button>
-  </div>
-  
+    <div fxLayoutAlign="space-between center" class="nav-buttons">
+        <span>AngularFire</span>
+        <div *ngIf="!(authService.user$ | async)?.uid">
+            <button mat-button (click)="authService.login()">Login</button>
+        </div>
+        <div *ngIf="!(authService.user$ | async)?.uid">
+            <button mat-button (click)="authService.logout()">Logout</button>
+            <button mat-button [routerLink]="['/company-list']">Companies</button>
+            <button mat-button [routerLink]="['/contact-list']">Contacts</button>
+        </div>
+
+    </div>
+
 </mat-toolbar>
 <div>
-  <div fxFlexOffset.gt-sm="15%" fxFlex.gt-sm="70%">
-      <router-outlet></router-outlet>
-  </div>
+    <div fxFlexOffset.gt-sm="15%" fxFlex.gt-sm="70%">
+        <router-outlet></router-outlet>
+    </div>
 </div>
-
-
